@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Certifications — coop_gig</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body class="app-bg">
+
+
+<!-- TOPBAR -->
+
+<nav class="topbar">
+
+    <div class="container-fluid px-4">
+
+        <div class="d-flex align-items-center">
+
+            <a
+                class="brand"
+                href="worker-dashboard.html"
+            >
+
+                <span class="brand-mark">
+                    c
+                </span>
+
+                coop_gig
+
+            </a>
+
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+
+                <span class="role-badge">
+                    WORKER
+                </span>
+
+                <button
+                    class="btn btn-light btn-sm"
+                    onclick="logout()"
+                >
+
+                    <i class="bi bi-box-arrow-right me-1"></i>
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<div class="container-fluid px-4 py-4">
+
+    <div class="row g-4">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="col-xl-2 col-lg-3">
+
+            <div class="sidebar-card">
+
+
+                <a
+                    class="side-link"
+                    href="worker-dashboard.html"
+                >
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    Overview
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-jobs.html"
+                >
+                    <i class="bi bi-briefcase"></i>
+                    My Jobs
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-earnings.html"
+                >
+                    <i class="bi bi-wallet2"></i>
+                    Earnings
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-skills.html"
+                >
+                    <i class="bi bi-tools"></i>
+                    My Skills
+                </a>
+
+
+                <a
+                    class="side-link active"
+                    href="worker-certifications.html"
+                >
+                    <i class="bi bi-patch-check"></i>
+                    Certifications
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-welfare.html"
+                >
+                    <i class="bi bi-shield-check"></i>
+                    Welfare
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-profile.html"
+                >
+                    <i class="bi bi-person"></i>
+                    My Profile
+                </a>
+
+
+                <button
+                    class="side-link"
+                    onclick="logout()"
+                >
+                    <i class="bi bi-box-arrow-left"></i>
+                    Sign out
+                </button>
+
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- CONTENT -->
+
+        <main class="col-xl-10 col-lg-9">
+
+
+            <div class="mb-4">
+
+                <span class="eyebrow">
+                    VERIFICATION
+                </span>
+
+                <h1 class="fw-bold mt-1 mb-1">
+                    Certifications
+                </h1>
+
+                <p class="text-secondary mb-0">
+                    Professional qualifications and certificates.
+                </p>
+
+            </div>
+
+
+
+            <div class="content-card">
+
+
+                <div
+                    class="d-flex flex-wrap
+                           justify-content-between
+                           align-items-center mb-4"
+                >
+
+                    <div>
+
+                        <h5 class="fw-bold mb-1">
+                            My Certifications
+                        </h5>
+
+                        <p class="text-secondary small mb-0">
+                            Certificates associated with your worker profile.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-outline-primary"
+                        onclick="loadCertifications()"
+                    >
+
+                        <i class="bi bi-arrow-clockwise me-1"></i>
+                        Refresh
+
+                    </button>
+
+                </div>
+
+
+
+                <div id="certificationsContainer">
+
+                    <div class="text-center py-5 text-secondary">
+
+                        <div
+                            class="spinner-border mb-3"
+                            role="status"
+                        ></div>
+
+                        <div>
+                            Loading certifications...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/app.js"></script>
+
+
+<script>
+
+requireLogin();
+
+
+async function loadCertifications() {
+
+    const container =
+        document.getElementById(
+            "certificationsContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="text-center py-5 text-secondary">
+
+            <div
+                class="spinner-border mb-3"
+                role="status"
+            ></div>
+
+            <div>
+                Loading certifications...
+            </div>
+
+        </div>
+
+    `;
+
+
+    try {
+
+        /*
+         * CORRECT BACKEND ENDPOINT
+         *
+         * GET /certifications/me
+         */
+
+        const response =
+            await api("/certifications/me");
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                formatApiError(data)
+            );
+
+        }
+
+
+        if (
+            !Array.isArray(data)
+            ||
+            data.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <i class="bi bi-patch-check"></i>
+
+                    <h5 class="mt-3">
+                        No certifications
+                    </h5>
+
+                    <p class="mb-0">
+                        Your professional certifications
+                        will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML = `
+
+            <div class="row g-3">
+
+                ${data.map(cert => `
+
+                    <div class="col-md-6">
+
+                        <div class="service-card-lg">
+
+                            <div class="service-icon">
+
+                                <i class="bi bi-patch-check"></i>
+
+                            </div>
+
+
+                            <div class="flex-grow-1">
+
+
+                                <div
+                                    class="d-flex
+                                           justify-content-between
+                                           align-items-start
+                                           gap-2"
+                                >
+
+                                    <h5 class="fw-bold mb-1">
+
+                                        ${cert.name}
+
+                                    </h5>
+
+
+                                    ${
+                                        cert.is_verified
+
+                                        ?
+
+                                        `
+                                            <span
+                                                class="status-pill success"
+                                            >
+
+                                                <i
+                                                    class="bi
+                                                           bi-check-circle
+                                                           me-1"
+                                                ></i>
+
+                                                Verified
+
+                                            </span>
+                                        `
+
+                                        :
+
+                                        `
+                                            <span
+                                                class="status-pill pending"
+                                            >
+                                                Pending
+                                            </span>
+                                        `
+                                    }
+
+                                </div>
+
+
+                                <p class="mb-2">
+
+                                    ${cert.issuing_organization}
+
+                                </p>
+
+
+                                <p
+                                    class="small
+                                           text-secondary
+                                           mb-1"
+                                >
+
+                                    <strong>
+                                        Certificate:
+                                    </strong>
+
+                                    ${
+                                        cert.certificate_number
+                                        || "N/A"
+                                    }
+
+                                </p>
+
+
+                                <p
+                                    class="small
+                                           text-secondary
+                                           mb-1"
+                                >
+
+                                    <strong>
+                                        Issue date:
+                                    </strong>
+
+                                    ${
+                                        cert.issue_date
+                                        || "N/A"
+                                    }
+
+                                </p>
+
+
+                                ${
+                                    cert.expiry_date
+                                    ?
+
+                                    `
+                                        <p
+                                            class="small
+                                                   text-secondary
+                                                   mb-0"
+                                        >
+
+                                            <strong>
+                                                Expiry:
+                                            </strong>
+
+                                            ${cert.expiry_date}
+
+                                        </p>
+                                    `
+
+                                    :
+
+                                    ""
+                                }
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+        `;
+
+    }
+
+
+    catch(error) {
+
+        console.error(
+            "Certification error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="alert alert-danger">
+
+                <i
+                    class="bi bi-exclamation-circle me-2"
+                ></i>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+loadCertifications();
+
+</script>
+
+
+</body>
+
+</html>

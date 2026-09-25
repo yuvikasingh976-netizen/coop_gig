@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Worker Dashboard — coop_gig</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- Project CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="app-bg">
+
+
+<!-- =========================================================
+     TOP NAVBAR
+     ========================================================= -->
+
+<nav class="topbar">
+
+    <div class="container-fluid px-4">
+
+        <div class="d-flex align-items-center">
+
+            <!-- BRAND -->
+
+            <a
+                class="brand"
+                href="worker-dashboard.html"
+            >
+
+                <span class="brand-mark">
+                    c
+                </span>
+
+                coop_gig
+
+            </a>
+
+
+            <!-- RIGHT -->
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+
+                <span
+                    id="roleBadge"
+                    class="role-badge"
+                >
+                    WORKER
+                </span>
+
+                <button
+                    class="btn btn-light btn-sm"
+                    onclick="logout()"
+                >
+
+                    <i class="bi bi-box-arrow-right me-1"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<div class="container-fluid px-4 py-4">
+
+    <div class="row g-4">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="col-xl-2 col-lg-3">
+
+            <div class="sidebar-card">
+
+
+                <a
+                    class="side-link active"
+                    href="worker-dashboard.html"
+                >
+
+                    <i class="bi bi-grid-1x2-fill"></i>
+
+                    Overview
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-jobs.html"
+                >
+
+                    <i class="bi bi-briefcase"></i>
+
+                    My Jobs
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-earnings.html"
+                >
+
+                    <i class="bi bi-wallet2"></i>
+
+                    Earnings
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-skills.html"
+                >
+
+                    <i class="bi bi-tools"></i>
+
+                    My Skills
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-certifications.html"
+                >
+
+                    <i class="bi bi-patch-check"></i>
+
+                    Certifications
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-welfare.html"
+                >
+
+                    <i class="bi bi-shield-check"></i>
+
+                    Welfare
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-profile.html"
+                >
+
+                    <i class="bi bi-person"></i>
+
+                    My Profile
+
+                </a>
+
+
+                <button
+                    class="side-link"
+                    onclick="logout()"
+                >
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    Sign out
+
+                </button>
+
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+        <main class="col-xl-10 col-lg-9">
+
+
+            <!-- HEADER -->
+
+            <div
+                class="d-flex flex-wrap justify-content-between align-items-end mb-4"
+            >
+
+                <div>
+
+                    <span class="eyebrow">
+                        WORKER PORTAL
+                    </span>
+
+                    <h1
+                        class="fw-bold mt-1 mb-1"
+                        id="welcomeTitle"
+                    >
+                        Welcome back
+                    </h1>
+
+                    <p class="text-secondary mb-0">
+
+                        Manage your jobs, earnings and worker profile.
+
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="worker-jobs.html"
+                    class="btn btn-primary"
+                >
+
+                    <i class="bi bi-briefcase me-2"></i>
+
+                    View my jobs
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATISTICS
+                 ================================================= -->
+
+            <div class="row g-3 mb-4">
+
+
+                <!-- TOTAL JOBS -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon blue">
+
+                            <i class="bi bi-briefcase"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Total Jobs
+                            </small>
+
+                            <strong id="totalJobs">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPLETED JOBS -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon green">
+
+                            <i class="bi bi-check2-circle"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Completed
+                            </small>
+
+                            <strong id="completedJobs">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EARNINGS -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon orange">
+
+                            <i class="bi bi-currency-rupee"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Total Earnings
+                            </small>
+
+                            <strong id="totalEarnings">
+                                ₹—
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RATING -->
+
+                <div class="col-md-6 col-xl-3">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon purple">
+
+                            <i class="bi bi-star-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Rating
+                            </small>
+
+                            <strong id="workerRating">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 CONTENT ROW
+                 ================================================= -->
+
+            <div class="row g-4">
+
+
+                <!-- RECENT JOBS -->
+
+                <div class="col-xl-8">
+
+                    <div class="content-card h-100">
+
+
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-3"
+                        >
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    Recent Jobs
+                                </h5>
+
+                                <p class="text-secondary small mb-0">
+                                    Your latest service requests.
+                                </p>
+
+                            </div>
+
+
+                            <a
+                                href="worker-jobs.html"
+                                class="btn btn-sm btn-outline-primary"
+                            >
+
+                                View all
+
+                            </a>
+
+                        </div>
+
+
+                        <div id="recentJobs">
+
+                            <div class="text-secondary">
+
+                                Loading jobs...
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="col-xl-4">
+
+                    <div class="content-card h-100">
+
+                        <h5 class="fw-bold mb-1">
+                            Quick Actions
+                        </h5>
+
+                        <p class="text-secondary small mb-4">
+
+                            Manage your worker account.
+
+                        </p>
+
+
+                        <div class="d-grid gap-2">
+
+
+                            <a
+                                href="worker-jobs.html"
+                                class="quick-action"
+                            >
+
+                                <i class="bi bi-briefcase"></i>
+
+                                <div>
+
+                                    <strong>
+                                        View Jobs
+                                    </strong>
+
+                                    <small>
+                                        Accept and manage jobs
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-chevron-right ms-auto"></i>
+
+                            </a>
+
+
+                            <a
+                                href="worker-earnings.html"
+                                class="quick-action"
+                            >
+
+                                <i class="bi bi-wallet2"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Earnings
+                                    </strong>
+
+                                    <small>
+                                        View your income
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-chevron-right ms-auto"></i>
+
+                            </a>
+
+
+                            <a
+                                href="worker-skills.html"
+                                class="quick-action"
+                            >
+
+                                <i class="bi bi-tools"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Skills
+                                    </strong>
+
+                                    <small>
+                                        Manage your skills
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-chevron-right ms-auto"></i>
+
+                            </a>
+
+
+                            <a
+                                href="worker-welfare.html"
+                                class="quick-action"
+                            >
+
+                                <i class="bi bi-shield-check"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Welfare
+                                    </strong>
+
+                                    <small>
+                                        Insurance and support
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-chevron-right ms-auto"></i>
+
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script src="js/app.js"></script>
+
+
+<script>
+
+
+/* =========================================================
+   AUTH CHECK
+   ========================================================= */
+
+requireLogin();
+
+
+/* =========================================================
+   CHECK ROLE
+   ========================================================= */
+
+const token =
+    localStorage.getItem("token");
+
+const tokenData =
+    decodeToken(token);
+
+const role =
+    localStorage.getItem("role")
+    || tokenData?.role
+    || "";
+
+
+/*
+ * This page is specifically
+ * for workers.
+ */
+
+if (role !== "WORKER") {
+
+    /*
+     * Customers should eventually
+     * be redirected to customer dashboard.
+     *
+     * For now we don't force redirect
+     * so the page doesn't break.
+     */
+
+    console.log(
+        "Current role:",
+        role
+    );
+
+}
+
+
+/* =========================================================
+   ROLE BADGE
+   ========================================================= */
+
+document.getElementById(
+    "roleBadge"
+).textContent =
+    role.replaceAll("_", " ");
+
+
+/* =========================================================
+   LOAD WORKER DASHBOARD
+   ========================================================= */
+
+async function loadWorkerDashboard() {
+
+
+    try {
+
+
+        /*
+         * =============================================
+         * LOAD WORKER JOBS
+         * =============================================
+         */
+
+        const jobsResponse =
+            await api(
+                "/bookings/worker"
+            );
+
+
+        const jobsData =
+            await jobsResponse.json();
+
+
+        if (!jobsResponse.ok) {
+
+            throw new Error(
+                formatApiError(
+                    jobsData
+                )
+            );
+
+        }
+
+
+        /*
+         * =============================================
+         * JOB STATISTICS
+         * =============================================
+         */
+
+        const totalJobs =
+            jobsData.length;
+
+
+        const completedJobs =
+            jobsData.filter(
+                job =>
+                    job.status === "COMPLETED"
+            ).length;
+
+
+        document.getElementById(
+            "totalJobs"
+        ).textContent =
+            totalJobs;
+
+
+        document.getElementById(
+            "completedJobs"
+        ).textContent =
+            completedJobs;
+
+
+        /*
+         * =============================================
+         * RECENT JOBS
+         * =============================================
+         */
+
+        const recentJobs =
+            document.getElementById(
+                "recentJobs"
+            );
+
+
+        if (!jobsData.length) {
+
+            recentJobs.innerHTML = `
+
+                <div class="empty-state py-4">
+
+                    <i class="bi bi-briefcase"></i>
+
+                    <h6 class="mt-2">
+                        No jobs yet
+                    </h6>
+
+                    <p class="small mb-0">
+                        New service requests will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+
+            /*
+             * Show latest 5 jobs
+             */
+
+            const latestJobs =
+                jobsData.slice(0, 5);
+
+
+            recentJobs.innerHTML =
+                latestJobs.map(
+                    job => `
+
+                    <div class="job-row">
+
+                        <div class="job-icon">
+
+                            <i class="bi bi-tools"></i>
+
+                        </div>
+
+                        <div class="job-info">
+
+                            <strong>
+                                Service #${job.service_id}
+                            </strong>
+
+                            <small>
+
+                                Customer #${job.customer_id}
+
+                                ·
+
+                                ${job.city}
+
+                            </small>
+
+                        </div>
+
+                        <div class="job-right">
+
+                            <strong>
+                                ₹${job.estimated_amount}
+                            </strong>
+
+                            <span class="status-pill ${String(
+                                job.status
+                            ).toLowerCase()}">
+
+                                ${job.status}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                `
+                ).join("");
+
+        }
+
+
+        /*
+         * =============================================
+         * LOAD EARNINGS SUMMARY
+         * =============================================
+         */
+
+        const earningsResponse =
+            await api(
+                "/payments/worker/earnings/summary"
+            );
+
+
+        const earningsData =
+            await earningsResponse.json();
+
+
+        if (earningsResponse.ok) {
+
+            document.getElementById(
+                "totalEarnings"
+            ).textContent =
+                "₹" +
+                Number(
+                    earningsData.total_earnings || 0
+                ).toLocaleString("en-IN");
+
+        }
+
+
+        /*
+         * =============================================
+         * LOAD WORKER PROFILE
+         * =============================================
+         *
+         * We use the worker jobs/earnings
+         * data first. Rating will be connected
+         * when worker profile endpoint is added.
+         */
+
+        document.getElementById(
+            "workerRating"
+        ).textContent =
+            "—";
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Worker dashboard error:",
+            error
+        );
+
+
+        document.getElementById(
+            "recentJobs"
+        ).innerHTML = `
+
+            <div class="alert alert-danger">
+
+                <i class="bi bi-exclamation-circle me-2"></i>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadWorkerDashboard();
+
+
+</script>
+
+
+</body>
+
+</html>

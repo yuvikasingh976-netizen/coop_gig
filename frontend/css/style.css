@@ -1,0 +1,1612 @@
+/* =========================================================
+   COOP_GIG — GLOBAL STYLES
+   ========================================================= */
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --ink: #14213d;
+    --text: #344054;
+    --muted: #667085;
+
+    --bg: #f6f8fc;
+    --white: #ffffff;
+
+    --line: #e4e7ec;
+
+    --success: #16a34a;
+    --success-bg: #ecfdf3;
+
+    --warning: #d97706;
+    --warning-bg: #fff7e6;
+
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+
+    --purple: #7c3aed;
+    --purple-bg: #f5f3ff;
+
+    --shadow-sm: 0 4px 15px rgba(16, 24, 40, 0.05);
+    --shadow-md: 0 10px 30px rgba(16, 24, 40, 0.08);
+    --shadow-lg: 0 20px 60px rgba(16, 24, 40, 0.12);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--ink);
+    background: var(--bg);
+
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 1.35rem;
+    font-weight: 800;
+
+    color: var(--ink);
+}
+
+.brand:hover {
+    color: var(--primary);
+}
+
+.brand-mark {
+    width: 36px;
+    height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        #4f8cff
+    );
+
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 900;
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.22);
+}
+
+.btn-white {
+    background: white;
+    border: 1px solid var(--line);
+    color: var(--ink);
+}
+
+.btn-white:hover {
+    background: #f9fafb;
+    border-color: #d0d5dd;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    background: rgba(255, 255, 255, 0.96) !important;
+
+    backdrop-filter: blur(12px);
+}
+
+.navbar .btn-link {
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   EYEBROW / SECTION LABEL
+   ========================================================= */
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.13em;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   LANDING PAGE / HERO
+   ========================================================= */
+
+.hero-section {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            #dce9ff 0,
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 90%,
+            #e9f1ff 0,
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eef4ff,
+            #ffffff
+        );
+
+    border-bottom: 1px solid var(--line);
+}
+
+.hero-section .display-3 {
+    color: var(--ink);
+    letter-spacing: -0.04em;
+}
+
+.hero-section .lead {
+    max-width: 700px;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   HERO WORKER CARD
+   ========================================================= */
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid #e7ebf2;
+
+    border-radius: 24px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 25px 70px rgba(30, 64, 175, 0.14);
+
+    transition: transform 0.25s ease;
+}
+
+.hero-card:hover {
+    transform: translateY(-4px);
+}
+
+.hero-card-top {
+    margin-bottom: 24px;
+
+    font-size: 0.8rem;
+
+    color: var(--muted);
+}
+
+.status-dot {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.12);
+}
+
+.worker-preview {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 16px;
+
+    background: #e8f0ff;
+
+    color: var(--primary);
+
+    font-weight: 800;
+}
+
+.avatar-lg {
+    width: 64px;
+    height: 64px;
+
+    margin-right: 14px;
+
+    font-size: 1.15rem;
+
+    border-radius: 18px;
+}
+
+.rating {
+    font-size: 0.82rem;
+
+    color: #b7791f;
+}
+
+.rating i {
+    color: #f59e0b;
+}
+
+
+/* =========================================================
+   VERIFIED BADGE
+   ========================================================= */
+
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+
+    width: fit-content;
+
+    font-size: 0.73rem;
+
+    font-weight: 700;
+
+    color: var(--success);
+
+    background: var(--success-bg);
+
+    border-radius: 999px;
+
+    padding: 5px 10px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   HERO PREVIEW GRID
+   ========================================================= */
+
+.preview-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.preview-grid > div {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef0f4;
+
+    border-radius: 14px;
+}
+
+.preview-grid small {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 0.72rem;
+}
+
+.preview-grid strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--ink);
+}
+
+
+/* =========================================================
+   MINI MAP
+   ========================================================= */
+
+.mini-map {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 14px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf2ff,
+            #f8fbff
+        );
+
+    color: var(--primary);
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section-padding {
+    padding: 90px 0;
+}
+
+.section-heading {
+    max-width: 650px;
+
+    margin: 0 auto;
+}
+
+.section-heading h2 {
+    margin-top: 8px;
+
+    font-size: 2.35rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   SERVICE TILES
+   ========================================================= */
+
+.service-tile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 16px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.service-tile i {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 1.25rem;
+}
+
+.service-tile:hover {
+    transform: translateY(-4px);
+
+    border-color: #c7d7fe;
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 42px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #2563eb,
+            #3b82f6
+        );
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 45px rgba(37, 99, 235, 0.2);
+}
+
+.cta-card h2 {
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    padding: 25px 0;
+
+    background: #101828;
+
+    color: #98a2b3;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   AUTH PAGES
+   ========================================================= */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 0;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            #dce9ff 0,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 90%,
+            #e8f0ff 0,
+            transparent 30%
+        ),
+        #f6f8fc;
+}
+
+
+/*
+   IMPORTANT:
+   calc() is required here.
+*/
+
+.auth-shell {
+    width: min(
+        calc(100% - 32px),
+        480px
+    );
+
+    padding: 20px 0;
+}
+
+.auth-card {
+    width: 100%;
+
+    padding: 36px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(20, 40, 80, 0.10);
+}
+
+.auth-card h2 {
+    letter-spacing: -0.025em;
+}
+
+.auth-icon {
+    width: 56px;
+    height: 56px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 1.4rem;
+}
+
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
+.form-label {
+    margin-bottom: 7px;
+
+    color: var(--text);
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #d0d5dd;
+
+    border-radius: 10px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+.form-control-lg,
+.form-select-lg {
+    min-height: 54px;
+
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+   APPLICATION BACKGROUND
+   ========================================================= */
+
+.app-bg {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #f6f8fc 100%
+        );
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    padding: 14px 0;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid var(--line);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar-card {
+    position: sticky;
+    top: 85px;
+
+    padding: 10px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-sm);
+}
+
+.side-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+
+    margin-bottom: 3px;
+
+    padding: 12px 14px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: #475467;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.side-link i {
+    width: 20px;
+
+    text-align: center;
+}
+
+.side-link:hover {
+    color: var(--primary);
+
+    background: #edf3ff;
+}
+
+.side-link.active {
+    color: var(--primary);
+
+    background: #eaf1ff;
+}
+
+
+/* =========================================================
+   ROLE BADGE
+   ========================================================= */
+
+.role-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    background: #eef2ff;
+
+    color: #4338ca;
+
+    border-radius: 999px;
+
+    padding: 6px 12px;
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================================
+   METRIC CARDS
+   ========================================================= */
+
+.metric-card {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    height: 100%;
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 17px;
+
+    color: inherit;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.metric-card small {
+    display: block;
+
+    color: var(--muted);
+}
+
+.metric-card h5 {
+    margin: 3px 0;
+
+    font-weight: 700;
+}
+
+.metric-card p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   METRIC ICONS
+   ========================================================= */
+
+.metric-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 1.2rem;
+}
+
+.metric-icon.blue {
+    background: #eaf1ff;
+    color: #2563eb;
+}
+
+.metric-icon.green {
+    background: #eaf8ef;
+    color: #16a34a;
+}
+
+.metric-icon.orange {
+    background: #fff5df;
+    color: #d97706;
+}
+
+
+/* =========================================================
+   CONTENT CARDS
+   ========================================================= */
+
+.content-card {
+    padding: 24px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   ADMIN STAT CARDS
+   ========================================================= */
+
+.stat-card {
+    height: 100%;
+
+    padding: 17px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 16px;
+}
+
+.stat-card i {
+    color: var(--primary);
+
+    font-size: 1.1rem;
+}
+
+.stat-card small {
+    display: block;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+}
+
+.stat-card strong {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 1.35rem;
+}
+
+
+/* =========================================================
+   SERVICE CARDS
+   ========================================================= */
+
+.service-card-lg {
+    display: flex;
+
+    gap: 18px;
+
+    height: 100%;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.service-card-lg:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.service-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #edf3ff;
+
+    color: var(--primary);
+
+    font-size: 1.35rem;
+}
+
+
+/* =========================================================
+   WORKER CARDS
+   ========================================================= */
+
+.worker-card {
+    height: 100%;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.worker-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.worker-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    font-size: 0.82rem;
+
+    color: #475467;
+}
+
+.worker-meta i {
+    margin-right: 4px;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.empty-state {
+    padding: 55px;
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px dashed #cfd6e1;
+
+    border-radius: 18px;
+
+    color: var(--muted);
+}
+
+.empty-state > i {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #94a3b8;
+
+    font-size: 2.2rem;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-modern {
+    margin-bottom: 0;
+}
+
+.table-modern thead th {
+    padding: 14px 16px;
+
+    background: #f8fafc;
+
+    color: #667085;
+
+    border-bottom: 1px solid var(--line);
+
+    font-size: 0.76rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
+}
+
+.table-modern td {
+    padding: 16px;
+
+    border-color: #f0f2f5;
+}
+
+
+/* =========================================================
+   STATUS PILLS
+   ========================================================= */
+
+.status-pill {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    background: #eef2f6;
+
+    color: #475467;
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+}
+
+.status-pill.success,
+.status-pill.completed {
+    background: var(--success-bg);
+    color: #15803d;
+}
+
+.status-pill.pending {
+    background: var(--warning-bg);
+    color: #b45309;
+}
+
+.status-pill.accepted,
+.status-pill.confirmed {
+    background: #eaf1ff;
+    color: #1d4ed8;
+}
+
+.status-pill.rejected,
+.status-pill.cancelled {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.status-pill.in_progress {
+    background: var(--purple-bg);
+    color: var(--purple);
+}
+
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.alert {
+    border-radius: 12px;
+
+    border: none;
+}
+
+.alert-danger {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+.alert-success {
+    background: #ecfdf3;
+
+    color: #15803d;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .sidebar-card {
+        position: static;
+
+        display: flex;
+
+        overflow-x: auto;
+
+        gap: 3px;
+    }
+
+    .side-link {
+        width: auto;
+
+        flex-shrink: 0;
+
+        white-space: nowrap;
+    }
+
+    .cta-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .section-padding {
+        padding: 65px 0;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+
+    .hero-section .display-3 {
+        font-size: 2.55rem;
+    }
+
+    .hero-card {
+        padding: 21px;
+
+        border-radius: 20px;
+    }
+
+    .auth-shell {
+        width: calc(100% - 24px);
+
+        padding: 12px 0;
+    }
+
+    .auth-card {
+        padding: 25px 20px;
+
+        border-radius: 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .cta-card {
+        padding: 28px 24px;
+
+        border-radius: 20px;
+    }
+
+    .content-card {
+        padding: 18px;
+    }
+
+    .service-card-lg {
+        padding: 18px;
+    }
+
+    .preview-grid {
+        gap: 8px;
+    }
+}
+/* =========================================================
+   WORKER DASHBOARD
+   ========================================================= */
+
+.worker-stat-card {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 17px;
+
+    box-shadow: var(--shadow-sm);
+
+    transition: all 0.2s ease;
+}
+
+.worker-stat-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+.worker-stat-card small {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 0.78rem;
+}
+
+
+.worker-stat-card strong {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--ink);
+
+    font-size: 1.45rem;
+}
+
+
+.worker-stat-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 1.25rem;
+}
+
+
+.worker-stat-icon.blue {
+    background: #eaf1ff;
+    color: #2563eb;
+}
+
+
+.worker-stat-icon.green {
+    background: #eaf8ef;
+    color: #16a34a;
+}
+
+
+.worker-stat-icon.orange {
+    background: #fff5df;
+    color: #d97706;
+}
+
+
+.worker-stat-icon.purple {
+    background: #f3e8ff;
+    color: #7c3aed;
+}
+
+
+/* =========================================================
+   WORKER JOB ROW
+   ========================================================= */
+
+.job-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eef0f4;
+}
+
+
+.job-row:last-child {
+    border-bottom: none;
+}
+
+
+.job-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+
+.job-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.job-info strong {
+    display: block;
+
+    font-size: 0.9rem;
+}
+
+
+.job-info small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 0.76rem;
+}
+
+
+.job-right {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 5px;
+}
+
+
+.job-right strong {
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-action {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef0f4;
+
+    border-radius: 12px;
+
+    color: var(--ink);
+
+    transition: all 0.2s ease;
+}
+
+
+.quick-action > i:first-child {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+
+.quick-action strong {
+    display: block;
+
+    font-size: 0.85rem;
+}
+
+
+.quick-action small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 0.7rem;
+}
+
+
+.quick-action:hover {
+    color: var(--primary);
+
+    background: #f1f5ff;
+
+    border-color: #cddcff;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   MOBILE WORKER DASHBOARD
+   ========================================================= */
+
+@media (max-width: 575px) {
+
+    .worker-stat-card {
+        padding: 16px;
+    }
+
+    .job-row {
+        align-items: flex-start;
+    }
+
+    .job-right {
+        text-align: right;
+    }
+
+}
+/* =========================================================
+   WORKER JOBS PAGE
+   ========================================================= */
+
+.job-card {
+    background: #ffffff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 17px;
+
+    overflow: hidden;
+
+    transition: all 0.2s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+.job-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 18px 20px;
+
+    background: #fbfcfe;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.job-card-body {
+    padding: 20px;
+}
+
+
+.job-card-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 14px 20px;
+
+    background: #fbfcfe;
+
+    border-top: 1px solid var(--line);
+}
+
+
+.job-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+
+.job-value {
+    color: var(--text);
+
+    font-size: 0.86rem;
+}
+
+
+@media (max-width: 575px) {
+
+    .job-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .job-card-footer {
+        justify-content: flex-start;
+    }
+
+}

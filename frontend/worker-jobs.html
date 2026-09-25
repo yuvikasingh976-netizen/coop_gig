@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Jobs — coop_gig</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- Project CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="app-bg">
+
+
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
+<nav class="topbar">
+
+    <div class="container-fluid px-4">
+
+        <div class="d-flex align-items-center">
+
+            <a
+                class="brand"
+                href="worker-dashboard.html"
+            >
+
+                <span class="brand-mark">
+                    c
+                </span>
+
+                coop_gig
+
+            </a>
+
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+
+                <span
+                    id="roleBadge"
+                    class="role-badge"
+                >
+                    WORKER
+                </span>
+
+                <button
+                    class="btn btn-light btn-sm"
+                    onclick="logout()"
+                >
+
+                    <i class="bi bi-box-arrow-right me-1"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<div class="container-fluid px-4 py-4">
+
+    <div class="row g-4">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="col-xl-2 col-lg-3">
+
+            <div class="sidebar-card">
+
+
+                <a
+                    class="side-link"
+                    href="worker-dashboard.html"
+                >
+
+                    <i class="bi bi-grid-1x2-fill"></i>
+
+                    Overview
+
+                </a>
+
+
+                <a
+                    class="side-link active"
+                    href="worker-jobs.html"
+                >
+
+                    <i class="bi bi-briefcase"></i>
+
+                    My Jobs
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-earnings.html"
+                >
+
+                    <i class="bi bi-wallet2"></i>
+
+                    Earnings
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-skills.html"
+                >
+
+                    <i class="bi bi-tools"></i>
+
+                    My Skills
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-certifications.html"
+                >
+
+                    <i class="bi bi-patch-check"></i>
+
+                    Certifications
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-welfare.html"
+                >
+
+                    <i class="bi bi-shield-check"></i>
+
+                    Welfare
+
+                </a>
+
+
+                <a
+                    class="side-link"
+                    href="worker-profile.html"
+                >
+
+                    <i class="bi bi-person"></i>
+
+                    My Profile
+
+                </a>
+
+
+                <button
+                    class="side-link"
+                    onclick="logout()"
+                >
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    Sign out
+
+                </button>
+
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             CONTENT
+             ================================================= -->
+
+        <main class="col-xl-10 col-lg-9">
+
+
+            <!-- HEADER -->
+
+            <div
+                class="d-flex flex-wrap justify-content-between align-items-end mb-4"
+            >
+
+                <div>
+
+                    <span class="eyebrow">
+                        WORKER PORTAL
+                    </span>
+
+                    <h1 class="fw-bold mt-1 mb-1">
+                        My Jobs
+                    </h1>
+
+                    <p class="text-secondary mb-0">
+
+                        Manage service requests assigned to you.
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn btn-outline-primary"
+                    onclick="loadJobs()"
+                >
+
+                    <i class="bi bi-arrow-clockwise me-2"></i>
+
+                    Refresh
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 JOB SUMMARY
+                 ================================================= -->
+
+            <div class="row g-3 mb-4">
+
+
+                <div class="col-md-4">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon blue">
+
+                            <i class="bi bi-briefcase"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Total Jobs
+                            </small>
+
+                            <strong id="totalJobs">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon orange">
+
+                            <i class="bi bi-hourglass-split"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Pending
+                            </small>
+
+                            <strong id="pendingJobs">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="worker-stat-card">
+
+                        <div class="worker-stat-icon green">
+
+                            <i class="bi bi-check2-circle"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Completed
+                            </small>
+
+                            <strong id="completedJobs">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 JOB LIST
+                 ================================================= -->
+
+            <div class="content-card">
+
+
+                <div
+                    class="d-flex justify-content-between align-items-center mb-4"
+                >
+
+                    <div>
+
+                        <h5 class="fw-bold mb-1">
+                            Service Requests
+                        </h5>
+
+                        <p class="text-secondary small mb-0">
+
+                            Accept, reject and update your assigned jobs.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="jobsContainer">
+
+                    <div class="text-center py-5 text-secondary">
+
+                        <div
+                            class="spinner-border mb-3"
+                            role="status"
+                        ></div>
+
+                        <div>
+                            Loading jobs...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script src="js/app.js"></script>
+
+
+<script>
+
+
+/* =========================================================
+   LOGIN CHECK
+   ========================================================= */
+
+requireLogin();
+
+
+/* =========================================================
+   LOAD JOBS
+   ========================================================= */
+
+async function loadJobs() {
+
+    const container =
+        document.getElementById(
+            "jobsContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="text-center py-5 text-secondary">
+
+            <div
+                class="spinner-border mb-3"
+                role="status"
+            ></div>
+
+            <div>
+                Loading jobs...
+            </div>
+
+        </div>
+
+    `;
+
+
+    try {
+
+
+        /* =============================================
+           CALL BACKEND
+           ============================================= */
+
+        const response =
+            await api(
+                "/bookings/worker"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                formatApiError(data)
+            );
+
+        }
+
+
+        /* =============================================
+           STATISTICS
+           ============================================= */
+
+        const total =
+            data.length;
+
+
+        const pending =
+            data.filter(
+                job =>
+                    job.status === "PENDING"
+            ).length;
+
+
+        const completed =
+            data.filter(
+                job =>
+                    job.status === "COMPLETED"
+            ).length;
+
+
+        document.getElementById(
+            "totalJobs"
+        ).textContent = total;
+
+
+        document.getElementById(
+            "pendingJobs"
+        ).textContent = pending;
+
+
+        document.getElementById(
+            "completedJobs"
+        ).textContent = completed;
+
+
+        /* =============================================
+           EMPTY STATE
+           ============================================= */
+
+        if (!data.length) {
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <i class="bi bi-briefcase"></i>
+
+                    <h5 class="mt-3">
+                        No jobs yet
+                    </h5>
+
+                    <p class="mb-0">
+
+                        You don't have any service requests
+                        assigned to you yet.
+
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* =============================================
+           JOB CARDS
+           ============================================= */
+
+        container.innerHTML =
+            data.map(
+                job =>
+                    createJobCard(job)
+            ).join("");
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Jobs error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="alert alert-danger">
+
+                <i
+                    class="bi bi-exclamation-circle me-2"
+                ></i>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE JOB CARD
+   ========================================================= */
+
+function createJobCard(job) {
+
+
+    const status =
+        String(
+            job.status
+        ).toUpperCase();
+
+
+    const statusClass =
+        status.toLowerCase();
+
+
+    let actions = "";
+
+
+    /* =============================================
+       PENDING
+       ============================================= */
+
+    if (status === "PENDING") {
+
+        actions = `
+
+            <button
+                class="btn btn-success btn-sm"
+                onclick="updateJob(${job.id}, 'accept')"
+            >
+
+                <i class="bi bi-check-lg me-1"></i>
+
+                Accept
+
+            </button>
+
+
+            <button
+                class="btn btn-outline-danger btn-sm"
+                onclick="updateJob(${job.id}, 'reject')"
+            >
+
+                <i class="bi bi-x-lg me-1"></i>
+
+                Reject
+
+            </button>
+
+        `;
+
+    }
+
+
+    /* =============================================
+       ACCEPTED
+       ============================================= */
+
+    else if (status === "ACCEPTED") {
+
+        actions = `
+
+            <button
+                class="btn btn-primary btn-sm"
+                onclick="updateJob(${job.id}, 'start')"
+            >
+
+                <i class="bi bi-play-fill me-1"></i>
+
+                Start Job
+
+            </button>
+
+        `;
+
+    }
+
+
+    /* =============================================
+       IN PROGRESS
+       ============================================= */
+
+    else if (status === "IN_PROGRESS") {
+
+        actions = `
+
+            <button
+                class="btn btn-success btn-sm"
+                onclick="updateJob(${job.id}, 'complete')"
+            >
+
+                <i class="bi bi-check2-circle me-1"></i>
+
+                Complete Job
+
+            </button>
+
+        `;
+
+    }
+
+
+    /* =============================================
+       COMPLETED
+       ============================================= */
+
+    else if (status === "COMPLETED") {
+
+        actions = `
+
+            <span class="text-success small">
+
+                <i class="bi bi-check-circle-fill me-1"></i>
+
+                Job completed
+
+            </span>
+
+        `;
+
+    }
+
+
+    /* =============================================
+       REJECTED / CANCELLED
+       ============================================= */
+
+    else {
+
+        actions = `
+
+            <span class="text-secondary small">
+
+                No actions available
+
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <div class="job-card mb-3">
+
+
+            <div class="job-card-header">
+
+
+                <div class="d-flex align-items-center gap-3">
+
+
+                    <div class="job-icon">
+
+                        <i class="bi bi-tools"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h6 class="fw-bold mb-1">
+
+                            Service #${job.service_id}
+
+                        </h6>
+
+                        <small class="text-secondary">
+
+                            Booking #${job.id}
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+                <span
+                    class="status-pill ${statusClass}"
+                >
+
+                    ${status.replaceAll("_", " ")}
+
+                </span>
+
+
+            </div>
+
+
+            <div class="job-card-body">
+
+
+                <div class="row g-3">
+
+
+                    <div class="col-md-3">
+
+                        <small class="job-label">
+                            Customer
+                        </small>
+
+                        <div class="job-value">
+
+                            <i class="bi bi-person me-1"></i>
+
+                            Customer #${job.customer_id}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <small class="job-label">
+                            Date
+                        </small>
+
+                        <div class="job-value">
+
+                            <i class="bi bi-calendar3 me-1"></i>
+
+                            ${job.scheduled_date}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <small class="job-label">
+                            Time
+                        </small>
+
+                        <div class="job-value">
+
+                            <i class="bi bi-clock me-1"></i>
+
+                            ${job.scheduled_time}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <small class="job-label">
+                            Amount
+                        </small>
+
+                        <div class="job-value fw-bold">
+
+                            ₹${Number(
+                                job.estimated_amount || 0
+                            ).toLocaleString("en-IN")}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <small class="job-label">
+                            Location
+                        </small>
+
+                        <div class="job-value">
+
+                            <i class="bi bi-geo-alt me-1"></i>
+
+                            ${job.address},
+                            ${job.city}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <small class="job-label">
+                            Description
+                        </small>
+
+                        <div class="job-value">
+
+                            ${
+                                job.description
+                                || "No description provided."
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="job-card-footer">
+
+                ${actions}
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   UPDATE JOB STATUS
+   ========================================================= */
+
+async function updateJob(
+    bookingId,
+    action
+) {
+
+
+    const confirmation =
+        confirm(
+            `Are you sure you want to ${action.replace(
+                "_",
+                " "
+            )} booking #${bookingId}?`
+        );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const response =
+            await api(
+                `/bookings/${bookingId}/${action}`,
+                {
+                    method: "PATCH"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                formatApiError(data)
+            );
+
+        }
+
+
+        /*
+         * Reload jobs
+         */
+
+        await loadJobs();
+
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ROLE BADGE
+   ========================================================= */
+
+const role =
+    localStorage.getItem("role")
+    || "WORKER";
+
+
+document.getElementById(
+    "roleBadge"
+).textContent =
+    role.replaceAll(
+        "_",
+        " "
+    );
+
+
+/* =========================================================
+   INITIAL LOAD
+   ========================================================= */
+
+loadJobs();
+
+
+</script>
+
+
+</body>
+
+</html>
